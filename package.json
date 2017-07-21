@@ -1,0 +1,33 @@
+{
+  "name": "homebridge-smappee",
+  "version": "0.0.1",
+  "description": "Homebridge plugin for Smappee smart switches",
+  "main": "index.js",
+  "dependencies": {
+    "request": "^2.81.0",
+    "url": "^0.11.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fredericbarthelet/homebridge-smappee.git"
+  },
+  "keywords": [
+    "homebrige",
+    "smappee",
+    "homebridge-plugin"
+  ],
+  "engines": {
+    "node": ">=0.12.0",
+    "homebridge": ">=0.2.0"
+  },
+  "author": "Frederic Barthelet",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fredericbarthelet/homebridge-smappee/issues"
+  },
+  "homepage": "https://github.com/fredericbarthelet/homebridge-smappee#readme"
+}
