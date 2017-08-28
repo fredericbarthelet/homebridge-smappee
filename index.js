@@ -1,12 +1,11 @@
 var Service, Characteristic;
 const request = require('request');
-const url = require('url');
 
 // "accessories": [
 //   {
 //     "accessory": "HomebridgeSmappee",
 //     "name": "Smappee Switch",
-//     "url": "http://<IP of Smappee>/gateway/apipublic/commandControlPublic",
+//     "ip": "ip",
 //     "switch_id": "2"
 //   }
 // ]
@@ -19,7 +18,7 @@ module.exports = function (homebridge) {
 
 function HomebridgeSmappee(log, config) {
   this.log = log;
-  this.urlData = url.parse(config["url"]);
+  this.url = 'http://' + config["ip"] + '/gateway/apipublic/commandControlPublic';
   this.switch_id = config["switch_id"];
   this.name = config["name"];
   this.currentState = false;
@@ -31,7 +30,7 @@ HomebridgeSmappee.prototype = {
   makeHttpRequest: function(postData, next) {
     var me = this;
     request({
-        url: me.urlData,
+        url: me.url,
         body: postData,
         method: 'POST',
         headers: {'Content-type': 'application/json'}
@@ -60,26 +59,22 @@ HomebridgeSmappee.prototype = {
     });
   },
 
-  identify: function (callback) {
-    this.log("Identify requested!");
-    callback(); // success
-  },
-
   getServices: function () {
+    var me = this;
     var informationService = new Service.AccessoryInformation();
-
     informationService
       .setCharacteristic(Characteristic.Manufacturer, "Smappee Manufacturer")
       .setCharacteristic(Characteristic.Model, "Smappee Model")
       .setCharacteristic(Characteristic.SerialNumber, "Smappee Serial Number");
 
-    var switchService = new Service.Switch(this.name);
+    var switchService = new Service.Switch(me.name);
     switchService.getCharacteristic(Characteristic.On)
       .on('get', this.getPowerState.bind(this))
       .on('set', this.setPowerState.bind(this));
 
+    this.informationService = informationService;
     this.switchService = switchService;
-    return [switchService];
+    return [informationService, switchService];
   }
 };
 
