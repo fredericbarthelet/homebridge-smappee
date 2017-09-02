@@ -22,6 +22,7 @@ accessories : [
   {
     "accessory": "HomebridgeSmappee",
     "name": "Smappee Switch",
+    "password": "admin",
     "ip": "192.168.0.10",
     "switch_id": "2"
   }
@@ -31,6 +32,7 @@ accessories : [
 Fields:
 * "accessory": Must always be "HomebridgeSmappee" (required)
 * "name": Can be anything (required)
+* "password": Password used to logon to smappee hub. **admin** is the default password.
 * "ip" : IP Address of your smappee energy monitor. In your Smappee application, go to Main menu > Smappee and click on
 the `SN XXXXXXXXXXXX`.
 * "switch_id": ID of your switch. This information can be found using your browser on `http://<IP-SMAPPEE>/smappee.html`. Login
