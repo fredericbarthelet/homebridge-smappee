@@ -21,8 +21,8 @@ function HomebridgeSmappee(log, config) {
   this.currentState = false;
   this.log = log;
   this.name = config["name"];
-  this.postData = {'on': 'control,controlId=1|' + this.switch_id, 'off': 'control,controlId=0|' + this.switch_id};
   this.switch_id = config["switch_id"];
+  this.postData = {'on': 'control,controlId=1|' + this.switch_id, 'off': 'control,controlId=0|' + this.switch_id};
   this.urlSet = 'http://' + config["ip"] + '/gateway/apipublic/commandControlPublic';
   this.urlAuth = 'http://' + config["ip"] + '/gateway/apipublic/logon';
 
@@ -63,7 +63,7 @@ HomebridgeSmappee.prototype = {
       if (error) {
         return next(error);
       } else {
-        this.makeHttpRequest(me.urlSet, powerOn ? me.postData.on : me.postData.off, function (error) {
+        me.makeHttpRequest(me.urlSet, powerOn ? me.postData.on : me.postData.off, function (error) {
           if (error) {
             return next(error);
           } else {
