@@ -1,6 +1,6 @@
 {
   "name": "homebridge-smappee",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Homebridge plugin for Smappee Comfort Plug switches",
   "main": "index.js",
   "dependencies": {
